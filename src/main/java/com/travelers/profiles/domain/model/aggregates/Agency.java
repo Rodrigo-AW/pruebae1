@@ -26,6 +26,10 @@ public class Agency {
     @Column(nullable = false)
     private AgencyType type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
     public Agency() {
 
     }
@@ -37,6 +41,7 @@ public class Agency {
         this.latitude=command.latitude();
         this.longitude=command.longitude();
         this.type=command.type();
+        this.owner = command.owner();
     }
 
 
@@ -67,5 +72,9 @@ public class Agency {
 
     public AgencyType getType() {
         return type;
+    }
+
+    public void setOwner(Owner owner) {
+
     }
 }
