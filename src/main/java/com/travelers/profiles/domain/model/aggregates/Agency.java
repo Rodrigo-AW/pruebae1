@@ -1,6 +1,7 @@
 package com.travelers.profiles.domain.model.aggregates;
 
 import com.travelers.profiles.domain.model.commands.CreateAgencyCommand;
+import com.travelers.profiles.domain.model.valueobjects.AgencyType;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -21,6 +22,9 @@ public class Agency {
     private String streetAddress;
     private Long latitude;
     private Long longitude;
+    //ejemplo Rod
+    @Column(nullable = false)
+    private AgencyType type;
 
     public Agency() {
 
@@ -32,8 +36,7 @@ public class Agency {
         this.streetAddress=command.streetAddress();
         this.latitude=command.latitude();
         this.longitude=command.longitude();
-
-
+        this.type=command.type();
     }
 
 
@@ -60,5 +63,9 @@ public class Agency {
 
     public Long getLongitude() {
         return longitude;
+    }
+
+    public AgencyType getType() {
+        return type;
     }
 }
