@@ -26,55 +26,27 @@ public class Agency {
     @Column(nullable = false)
     private AgencyType type;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
+
 
     public Agency() {
 
     }
 
-    public Agency(CreateAgencyCommand command){
+    public Agency(CreateAgencyCommand command, Owner owner){
         this.name=command.name();
         this.businessId=command.businessId();
         this.streetAddress=command.streetAddress();
         this.latitude=command.latitude();
         this.longitude=command.longitude();
         this.type=command.type();
-        this.owner = command.owner();
+        this.owner = owner;
     }
 
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public Long getBusinessId() {
-        return businessId;
-    }
-
-    public String getStreetAddress() {
-        return streetAddress;
-    }
-
-    public Long getLatitude() {
-        return latitude;
-    }
-
-    public Long getLongitude() {
-        return longitude;
-    }
-
-    public AgencyType getType() {
-        return type;
-    }
-
-    public void setOwner(Owner owner) {
-
-    }
 }

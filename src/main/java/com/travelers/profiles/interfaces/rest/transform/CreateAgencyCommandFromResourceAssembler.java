@@ -2,7 +2,6 @@ package com.travelers.profiles.interfaces.rest.transform;
 
 import com.travelers.profiles.domain.model.commands.CreateAgencyCommand;
 import com.travelers.profiles.interfaces.rest.resources.CreateAgencyResource;
-
 public class CreateAgencyCommandFromResourceAssembler {
     public static CreateAgencyCommand toCommandFromResource(CreateAgencyResource resource){
         return new CreateAgencyCommand(
@@ -11,9 +10,8 @@ public class CreateAgencyCommandFromResourceAssembler {
                 resource.streetAddress(),
                 resource.latitude(),
                 resource.longitude(),
-                resource.type()
+                resource.type(),
+                resource.ownerId()
         );
     }
-
-
 }

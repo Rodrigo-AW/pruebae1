@@ -1,5 +1,6 @@
 package com.travelers.profiles.domain.model.aggregates;
 
+import com.travelers.profiles.domain.model.commands.CreateOwnerCommand;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -14,13 +15,17 @@ public class Owner {
     @Column(nullable = false)
     private String name;
 
-    /*UN OWNER TIENE MUCHAS AGENCIAS */
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Agency> agencies = new ArrayList<>();
-
-    public void addAgency(Agency agency) {
-        agencies.add(agency);
-        agency.setOwner(this);
+    public Long getId() {
+        return this.id;
     }
+public Owner(){
 
+}
+    public String getName() {
+        return name;
+    }
+    public Owner(CreateOwnerCommand command)
+    {
+        this.name=command.name();
+    }
 }
